@@ -5,6 +5,7 @@ public class cat extends  Animal {
 
 }
 class otmane{
+    int a;
     int age;
     float height;
     String name;
