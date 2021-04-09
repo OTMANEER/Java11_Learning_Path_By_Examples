@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>MiniProjet</OriginalElement>
+  <nodes>
+    <node x="0.0" y="176.0">MiniProjet.Piece_Composite</node>
+    <node x="198.25" y="0.0">MiniProjet.Piece</node>
+    <node x="343.0" y="203.5">MiniProjet.Piece_base</node>
+    <node x="0.0" y="376.0">MiniProjet.Paire</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="MiniProjet.Piece_base" target="MiniProjet.Piece">
+      <point x="0.0" y="-50.0" />
+      <point x="476.0" y="151.0" />
+      <point x="379.0" y="151.0" />
+      <point x="60.25" y="63.0" />
+    </edge>
+    <edge source="MiniProjet.Piece_Composite" target="MiniProjet.Piece">
+      <point x="0.0" y="-77.5" />
+      <point x="161.5" y="151.0" />
+      <point x="258.5" y="151.0" />
+      <point x="-60.25" y="63.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="305.0" y="202.0" />
+  <SelectedNodes>
+    <node>MiniProjet.Piece_Composite</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
