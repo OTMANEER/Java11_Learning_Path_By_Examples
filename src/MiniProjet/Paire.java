@@ -1,25 +1,39 @@
 package MiniProjet;
 
 public class Paire<Piece,Integer> {
-    public int nb_occurrence;
-    Piece piece;
+    public int nb_occurrences=0;
+    public Piece  piece;
 
     public Paire(){
     }
-    public Paire(int nb_occurrence, Piece piece) {
-        this.nb_occurrence = nb_occurrence;
+    public Paire(Piece  piece,int nb_occurrences) {
         this.piece = piece;
+        this.nb_occurrences += nb_occurrences;
     }
 
+
     public void setNb_occurrence(int nb_occurrence) {
-        this.nb_occurrence = nb_occurrence;
+        this.nb_occurrences = nb_occurrence;
     }
 
     public int getNb_occurrence() {
-        return this.nb_occurrence;
+        return this.nb_occurrences;
     }
 
-    public void setPiece(Piece piece) {
+    public void setPiece(Piece  piece) {
         this.piece = piece;
+    }
+
+    public Piece  getPiece() {
+        return piece;
+    }
+
+    @Override
+    public String toString() {
+        if(this.piece.getClass() == PieceDeBase.class){
+            return "" + piece.toString() + ", Nombre d'occurrences =" + nb_occurrences +"\n\t\t";
+        }else{
+            return "" + piece.toString()+"\n";
+        }
     }
 }
