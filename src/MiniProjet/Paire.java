@@ -1,12 +1,12 @@
 package MiniProjet;
 
-public class Paire<Piece,Integer> {
+public class Paire<T extends Piece,Integer> {
     public int nb_occurrences=0;
-    public Piece  piece;
+    public T  piece;
 
     public Paire(){
     }
-    public Paire(Piece  piece,int nb_occurrences) {
+    public Paire(T  piece,int nb_occurrences) {
         this.piece = piece;
         this.nb_occurrences += nb_occurrences;
     }
@@ -20,7 +20,7 @@ public class Paire<Piece,Integer> {
         return this.nb_occurrences;
     }
 
-    public void setPiece(Piece  piece) {
+    public void setPiece(T  piece) {
         this.piece = piece;
     }
 

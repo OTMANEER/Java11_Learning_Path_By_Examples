@@ -2,40 +2,45 @@ package MiniProjet;
 
 public class Main {
     public static void main(String[] args) {
-/*        PieceDeBase  pieceDeBase = new PieceDeBase("Placard",10F);
-        PieceDeBase  pieceDeBase1 = new PieceDeBase("Placard",10F);
-        PieceComposite piece1 = new PieceComposite();
-        piece1.ajouter_piece(pieceDeBase,10);
-        piece1.ajouter_piece(pieceDeBase1,10);
-
-        PieceComposite piece = new PieceComposite();
-        piece.ajouter_piece(pieceDeBase,10);
-        piece.ajouter_piece(pieceDeBase1,10);
-        piece.ajouter_piece(pieceDeBase1,10);
-        piece.ajouter_piece(piece1,1);
-        piece.affiche_tous_sous_pieces();*/
 
         PieceDeBase pieceDeBase = new PieceDeBase("TaRo",11.2F);
         PieceDeBase pieceDeBase1 = new PieceDeBase("KACHA",1.2F);
-        PieceDeBase pieceDeBase2 = new PieceDeBase("Mkheda",2.2F);
-        PieceComposite pieceComposite = new PieceComposite("Cuisine");
-        PieceComposite pieceComposite1 = new PieceComposite("Salon");
-        pieceComposite.ajouter_piece(pieceComposite1,12);
-        pieceComposite.ajouter_piece(pieceComposite1,12);
-        pieceComposite1.ajouter_piece(pieceDeBase,8);
-        pieceComposite1.ajouter_piece(pieceDeBase,8);
-        pieceComposite1.ajouter_piece(pieceDeBase,8);     pieceComposite.ajouter_piece(pieceDeBase,8);
-        pieceComposite1.ajouter_piece(pieceDeBase,8);
-        pieceComposite1.ajouter_piece(pieceDeBase,8);
-        pieceComposite1.ajouter_piece(pieceDeBase1,2);
+        PieceComposite pieceComposite1 = new PieceComposite("Cuisine");
+        PieceComposite pieceComposite2 = new PieceComposite("Toilette");
 
-        pieceComposite.ajouter_piece(pieceDeBase,8);
-     pieceComposite.ajouter_piece(pieceDeBase,8);
-     pieceComposite.ajouter_piece(pieceDeBase,8);
-     pieceComposite.ajouter_piece(pieceDeBase,8);
-     pieceComposite.ajouter_piece(pieceDeBase1,2);
+        pieceComposite1.ajouter_piece(pieceDeBase,2);
+        pieceComposite1.ajouter_piece(pieceDeBase,2);
+        pieceComposite2.ajouter_piece(pieceDeBase1,10);
+        pieceComposite2.ajouter_piece(pieceDeBase1,10);
+        pieceComposite1.ajouter_piece(pieceComposite2,1);
 
-       pieceComposite.affiche_tous_sous_pieces(10);
+/*           try{
+             System.out.println(pieceComposite.getPoid());
+             pieceComposite.affiche_tous_sous_pieces(10);
+          } catch (Exception e) {
+               System.out.println("We are Sorry A lot of Exceptions appear in  this banch of code");
+           }*/
 
+        Nomenclature nomenclature = new Nomenclature("JPDL");
+        nomenclature.ajouter(123,pieceDeBase1);
+         nomenclature.ajouter(124,pieceComposite1);
+        nomenclature.ajouter(124,pieceComposite1);
+         nomenclature.ajouter(124,pieceComposite1);
+         nomenclature.ajouter(124,pieceComposite1);
+      /*  try {
+            System.out.println(nomenclature.toString());
+        } catch (Exception e) {
+            System.out.println("We have an exception");
+        }
+    */
+        /*
+        Piece p = nomenclature.chercherUnePiece(121);
+        System.out.println(p);*/
+        nomenclature.afficher_toutes_pieces_composites(pieceDeBase);
     }
+
 }
+
+// 2.1:  Une grande quantité des exceptions sera levées
+
+

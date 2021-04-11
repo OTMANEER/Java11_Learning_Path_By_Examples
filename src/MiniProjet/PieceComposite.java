@@ -1,8 +1,6 @@
 package MiniProjet;
 
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Set;
 
 public class PieceComposite extends Piece {
     LinkedList<Paire> listePieceComposite;
@@ -23,11 +21,14 @@ public class PieceComposite extends Piece {
         this.listePieceComposite.add(paire);
     }
 
-    public void affiche_tous_sous_pieces(int decal) {
+    public void affiche_tous_sous_pieces(int decal) throws Exception {
         String s=" ";
         for(int i=0;i<decal;i++)
             s+=" ";
         for(Paire piece:listePieceComposite){
+            if(!this.estComposante(piece.getPiece())){
+                throw new Exception();
+            }
             System.out.println(s+piece.toString());
         }
     }
@@ -37,12 +38,25 @@ public class PieceComposite extends Piece {
         return "Piece Composite :"+this.denomination +"\n\t\t"+ listePieceComposite.toString()+"\n\t\t";
     }
 @Override
-    public float getPoid() {
+    public float getPoid() throws Exception {
         float temp = 0;
         for(Paire paire:listePieceComposite){
-            temp +=paire.getPiece();
+            if(!this.estComposante(paire.getPiece()))
+                throw new Exception();
+          temp +=paire.getPiece().getPoid()*(paire.getNb_occurrence());
+            System.out.println(paire.getPiece().getPoid() +" -> "+(paire.getNb_occurrence()));
         }
         return temp;
+    }
+// Q 2.2
+    public boolean estComposante(Piece piece){
+        if(this == piece)
+            return false;
+        for(Paire p: listePieceComposite){
+            if(p.getPiece() == piece)
+                return true;
+        }
+        return false;
     }
 }
 
