@@ -5,7 +5,7 @@ public class PieceDeBase extends Piece{
         this.denomination = denomination;
         this.poids= poid;
     }
-    public String getDenominatio(){
+    public String getDenomination(){
         return this.denomination;
     }
 @Override
@@ -14,7 +14,7 @@ public class PieceDeBase extends Piece{
     }
     @Override
     public String toString() {
-        return " Piece  de base:  " +
+        return "  de base:  " +
                 "denomination=  " + denomination +
                 ",  poids= " + poids +"";
     }

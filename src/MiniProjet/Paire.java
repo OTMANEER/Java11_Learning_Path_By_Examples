@@ -11,7 +11,6 @@ public class Paire<T extends Piece,Integer> {
         this.nb_occurrences += nb_occurrences;
     }
 
-
     public void setNb_occurrence(int nb_occurrence) {
         this.nb_occurrences = nb_occurrence;
     }
