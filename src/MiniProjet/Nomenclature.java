@@ -1,11 +1,15 @@
 package MiniProjet;
 
-import Exceptions.more.I;
-
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Nomenclature {
-    protected String name;
+    private String name;
     Map<Integer,Piece> toutesPieces; // this integer should target the reference
     private Map<Integer,Piece> toutePieceFragiles;
 
@@ -16,24 +20,23 @@ public class Nomenclature {
     }
 
     public void ajouter(int numero_reference,Piece piece){
-        toutesPieces.put(numero_reference, piece);
+        Piece p = toutesPieces.put(numero_reference, piece);
     }
     public void ajouter_piece_fragile(int numero_reference,Piece piece){
-        toutePieceFragiles.put(numero_reference, piece);
+        Piece p = toutePieceFragiles.put(numero_reference, piece);
     }
 
     @Override
     public String toString() {
         toutesPieces.putAll(toutePieceFragiles);
-        String s="";
+        StringBuilder s= new StringBuilder();
         for(Map.Entry<Integer, Piece> entry : toutesPieces.entrySet()) {
             int reference = entry.getKey();
             Piece piece = entry.getValue();
-                s+=" La piece: " + piece.toString() + ", De reference: " + reference+"\n";
+                s.append(piece.toString()).append("\n");
             }
-        return s+"";
+        return s.toString();
     }
-
         public Piece chercherUnePiece(int reference){
         String s="";
         Map<Integer,Piece> list = null;
@@ -136,6 +139,64 @@ public class Nomenclature {
         toutesPieces = new TreeMap<>(treeMap);
     }
 
+    public String getName() {
+        return name;
+    }
+    public void sauvegarder_nomenclature(String nom) throws IOException {
+        System.out.println("La nomenclature: "+this.getName());
+        FileWriter myWriter = new FileWriter(nom);
+        myWriter.write(this.toString());
+        myWriter.close();
+        System.out.println("Successfully Saved! Verify; "+nom);
+    }
 
+    public static Nomenclature lire_nomenclature(String  nom) throws IOException {
+        Nomenclature nomenclature=null;
+        PieceComposite pieceComposite = null;
+        PieceDeBase pieceDeBase;
+        long start = System.currentTimeMillis();
+        //   String file ="/home/oes/Documents/Java_OCP11/src/MiniProjet/files/test2.nom";
+        Path path = Paths.get("src/MiniProjet/files/"+nom);
+        BufferedReader reader = Files.newBufferedReader(path);
+        String line;
+        String nomNomenclature ="";
+        String nomComposite="";
+        int refComposite;
+        float poidComposite = 0;
+        int refBase;
+        int occurenceBase;
 
+        int Lines=0;
+        boolean flagLine=false;
+        while((line = reader.readLine())!=null){
+            line = line.stripLeading();
+            line = line.stripTrailing();
+            String[] t = line.split(" ");
+            Lines++;
+            if(Lines==1){
+                nomNomenclature =t[0];
+                 nomenclature = new Nomenclature(nomNomenclature);
+                // System.out.println(nomNomenclature);
+            }else if(t.length == 3){
+                refComposite =Integer.parseInt(t[0]);
+                nomComposite = t[1];
+                poidComposite =Float.parseFloat(t[2]);
+                pieceComposite = new PieceComposite(nomComposite,poidComposite,refComposite);
+                nomenclature.ajouter(refComposite,pieceComposite);
+                //   System.out.println("Nom: "+nomComposite+"  ref: "+refComposite+" poids: "+poidComposite);
+            }else if(t.length == 2){
+                refBase =Integer.parseInt(t[0]);
+                occurenceBase =Integer.parseInt(t[1]);
+                if(refBase == -1){
+                    flagLine= true;
+                    continue;
+                }
+                pieceDeBase = new PieceDeBase(refBase,occurenceBase);
+                assert pieceComposite != null;
+                pieceComposite.ajouter_piece(pieceDeBase,refBase);
+                // System.out.println("        ref: "+refBase+",  occurence: "+occurenceBase);
+            }
+        }
+        return nomenclature;
+    }
 }

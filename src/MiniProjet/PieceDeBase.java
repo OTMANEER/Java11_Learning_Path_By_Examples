@@ -1,9 +1,10 @@
 package MiniProjet;
 
 public class PieceDeBase extends Piece{
-    public PieceDeBase(String denomination, float poid) {
-        this.denomination = denomination;
-        this.poids= poid;
+    int occurence;
+    public PieceDeBase(int reference, int occurence) {
+        this.reference = reference;
+        this.occurence= occurence;
     }
     public String getDenomination(){
         return this.denomination;
@@ -14,8 +15,6 @@ public class PieceDeBase extends Piece{
     }
     @Override
     public String toString() {
-        return "  de base:  " +
-                "denomination=  " + denomination +
-                ",  poids= " + poids +"";
+        return " reference: " + reference +", occurences: "+occurence;
     }
 }

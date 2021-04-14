@@ -30,7 +30,7 @@ public class Paire<T extends Piece,Integer> {
     @Override
     public String toString() {
         if(this.piece.getClass() == PieceDeBase.class){
-            return "" + piece.toString() + ", Nombre d'occurrences =" + nb_occurrences +"\n\t\t";
+            return "" + piece.toString() +"\n\t\t\t\t";
         }else{
             return "" + piece.toString()+"\n";
         }

@@ -5,7 +5,9 @@ import java.util.LinkedList;
 public class PieceComposite extends Piece {
     LinkedList<Paire> listePieceComposite;
 
-    public PieceComposite(String denomination) {
+    public PieceComposite(String denomination,float poids,int reference) {
+        this.poids=poids;
+        this.reference = reference;
         this.denomination = denomination;
         this.listePieceComposite = new LinkedList<>();
     }
@@ -22,7 +24,7 @@ public class PieceComposite extends Piece {
     }
 
     public void affiche_tous_sous_pieces(int decal) throws Exception {
-        String s=" ";
+        String s="";
         for(int i=0;i<decal;i++)
             s+=" ";
         for(Paire piece:listePieceComposite){
@@ -35,7 +37,7 @@ public class PieceComposite extends Piece {
 
     @Override
     public String toString() {
-        return "Piece Composite :"+this.denomination +"\n\t\t"+ listePieceComposite.toString()+"\n\t\t";
+        return "Piece Composite: "+this.denomination +", De reference: "+ this.reference+", poids: "+this.poids+"\n\t\t\t\t"+listePieceComposite.toString()+"";
     }
 @Override
     public float getPoid() throws Exception {
