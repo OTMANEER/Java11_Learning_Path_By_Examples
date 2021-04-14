@@ -73,10 +73,7 @@ public class Nomenclature {
             }
         }
             System.out.println("Aucune Piece Composite trouvée, Je pense qu'il s'agit d'une piece de Base!");
-
     }
-
-
 
 /*
     Q 3.6 Ajouter une méthode permettant de supprimer une pièce de la nomenclature. On n’autorise
