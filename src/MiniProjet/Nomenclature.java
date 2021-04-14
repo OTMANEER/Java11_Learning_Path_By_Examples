@@ -1,5 +1,7 @@
 package MiniProjet;
 
+import Exceptions.more.I;
+
 import java.util.*;
 
 public class Nomenclature {
@@ -128,28 +130,10 @@ public class Nomenclature {
     }
 
     public void trier(){
-        Map<Integer, Piece> map =toutesPieces;
-        System.out.println("Before sorting");
-        map.forEach((k,v)->System.out.println(k+"="+v));
-
-        System.out.println("After Sorting by value");
-        List<Map.Entry<Integer, Piece>> list = new LinkedList<>(map.entrySet());
-        list.sort(new Comparator<Object>() {
-            @SuppressWarnings("unchecked")
-            public int compare(Object o1, Object o2) {
-                return ((Comparable<Integer>) ((Map.Entry<Integer, Integer>) (o1)).getKey()).compareTo(((Map.Entry<Integer, Integer>) (o2)).getKey());
-            }
-        });
-
-        System.out.println(" sorting");
-
-        Map<Integer, Piece> result = new HashMap<>();
-        Iterator<Map.Entry<Integer, Piece>> it = list.iterator();
-        while (it.hasNext()) {
-            Map.Entry<Integer, Piece> entry = it.next();
-            result.put(entry.getKey(), entry.getValue());
-        }
-        toutesPieces = result;
+        System.out.println("Les pieces fragiles ne sont pas concernées. ");
+        System.out.println("Trie en cours...");
+        Map<Integer, Piece> treeMap = new TreeMap<>(toutesPieces);
+        toutesPieces = new TreeMap<>(treeMap);
     }
 
 
