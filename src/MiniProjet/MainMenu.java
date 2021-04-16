@@ -189,7 +189,6 @@ public class MainMenu {
                     break;
             }
         }while(choix != -1);
-
     }
     public static void main(String[] args) {
         boolean flagGenerale= false;
