@@ -22,6 +22,8 @@ public class MainMenu {
         System.out.println("6-Afficher tous les détails d’une piece");
         System.out.println("7-Supprimer une pièce");
         System.out.println("8-Trier la nomenclature par reference");
+        System.out.println("9-Sauvegarde de la nomenclature");
+        System.out.println("10- Lecture d'une nomenclature");
         System.out.println("0-Sortir");
 
         do{
