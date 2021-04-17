@@ -1,5 +1,6 @@
 package MiniProjet;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 
 public class PieceComposite extends Piece {
@@ -20,13 +21,22 @@ public class PieceComposite extends Piece {
               return;
             }
         }
+        Comparator<Paire<Piece,Integer>> c = new Comparator<Paire<Piece, Integer>>() {
+            @Override
+            public int compare(Paire<Piece, Integer> pieceIntegerPaire, Paire<Piece, Integer> t1) {
+                return pieceIntegerPaire.getPiece().getReference() - t1.getPiece().getReference();
+            }
+        };
         this.listePieceComposite.add(paire);
+        this.listePieceComposite.sort(c);
     }
 
     public void affiche_tous_sous_pieces(int decal) throws Exception {
         StringBuilder s= new StringBuilder();
-        for(int i=0;i<decal;i++)
-            s.append(" ");
+        s.append(" ".repeat(Math.max(0, decal)));
+        // More robust?
+       // s.indent(decal); // require Java 12!
+
         for(Paire piece:listePieceComposite){
             if(!this.estComposante(piece.getPiece())){
                 throw new Exception();
@@ -59,6 +69,11 @@ public class PieceComposite extends Piece {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public int compareTo( Piece pieceIntegerPaire) {
+        return this.getReference() - pieceIntegerPaire.getReference();
     }
 }
 

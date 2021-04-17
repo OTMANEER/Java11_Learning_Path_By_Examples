@@ -14,6 +14,7 @@ public class MainMenu {
     public void Menu() throws InputMismatchException {
         int choix =0;
         Scanner sc = new Scanner(System.in);
+        System.out.println("****************************************");
         System.out.println("1- Nouvelle nomenclature");
         System.out.println("2-Ajouter une pièce sans ces composants");
         System.out.println("3-Afficher la nomenclature");
@@ -25,8 +26,10 @@ public class MainMenu {
         System.out.println("9-Sauvegarde de la nomenclature");
         System.out.println("10- Lecture d'une nomenclature");
         System.out.println("0-Sortir");
+        System.out.println("****************************************");
 
         do{
+            System.out.println("****************************************");
             System.out.print("Donner votre choix: ");
             choix = sc.nextInt();
             switch (choix) {
@@ -151,7 +154,9 @@ public class MainMenu {
                         }
                     }
                     if (!flag5)
+                    System.out.println("****************************************");
                     System.out.println("La piece n'existe pas");
+                    System.out.println("****************************************");
                     break;
                 case 8:
                     this.nomenclature.trier();
@@ -162,11 +167,18 @@ public class MainMenu {
                     System.out.print("Donner le nom du fichier: ");
                     nomFichier =scanner.nextLine();
                     System.out.print("");
-                    assert nomenclature != null;
+                    if(nomenclature == null) {
+                        System.out.println("****************************************");
+                        System.out.println("La nomenclature est vide!!!");
+                        System.out.println("****************************************");
+                    }
                     try {
                         this.nomenclature.sauvegarder_nomenclature(nomFichier);
                     } catch (IOException e) {
+                        System.out.println("****************************************");
                         System.out.println("Une exception!!  faite attention aux entrées");
+                        System.out.println("****************************************");
+
                     }
                     break;
 
@@ -184,10 +196,14 @@ public class MainMenu {
                     }
                     break;
                 case 0:
+                    System.out.println("****************************************");
                     System.out.println("Au revoir ...");
+                    System.out.println("****************************************");
                     return;
                 default:
+                    System.out.println("****************************************");
                     System.out.println("Choix ne correspond pas");
+                    System.out.println("****************************************");
                     break;
             }
         }while(choix != -1);
@@ -200,7 +216,9 @@ public class MainMenu {
                 mainMenu.Menu();
 
             }catch (Exception e){
+                System.out.println("****************************************");
                 System.out.println("Les entrées ne marchent pas!!!!!!!!!!!");
+                System.out.println("****************************************");
                 flagGenerale = true;
             }
         }while (flagGenerale);

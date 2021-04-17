@@ -14,9 +14,15 @@ public class Nomenclature {
     private Map<Integer,Piece> toutePieceFragiles;
 
     public Nomenclature(String name) {
+/*        Comparator<Paire<Piece,Integer>> c= new Comparator<Paire<Piece, Integer>>() {
+            @Override
+            public int compare(Paire<Piece, Integer> pieceIntegerPaire, Paire<Piece, Integer> t1) {
+                return pieceIntegerPaire.getPiece().getReference() - t1.getPiece().getReference();
+            }
+        };*/
         this.name = name;
-        this.toutesPieces = new HashMap<>();
-        this.toutePieceFragiles = new HashMap<>();
+        this.toutesPieces = new TreeMap<>();
+        this.toutePieceFragiles = new TreeMap<>();
     }
 
     public void ajouter(int numero_reference,Piece piece){
@@ -65,7 +71,9 @@ public class Nomenclature {
         else if (toutePieceFragiles.containsValue(p))
             list = toutePieceFragiles;
         else{
+            System.out.println("****************************************");
             System.out.println("Objet non trouvé !");
+            System.out.println("****************************************");
         }
         assert list != null;
 
@@ -77,7 +85,9 @@ public class Nomenclature {
                 return;
             }
         }
+            System.out.println("****************************************");
             System.out.println("Aucune Piece Composite trouvée, Je pense qu'il s'agit d'une piece de Base!");
+            System.out.println("****************************************");
     }
 
 /*
@@ -96,7 +106,9 @@ public class Nomenclature {
             b = list.entrySet().removeIf(e -> (e.getValue().getClass() == PieceDeBase.class && e.getValue().equals(piece)));
              System.out.println("C'est fait?: "+b);
             } else{
+            System.out.println("****************************************");
             System.out.println("Objet non trouvé Pour la suppression");
+            System.out.println("****************************************");
         }
     }
 /* Q 3.7 Ajouter une méthode Menu qui sera lancée par MainMenu.
@@ -129,12 +141,12 @@ public class Nomenclature {
             Piece piece = entry.getValue();
             s.append(" La piece: ").append(piece.toString()).append(", De reference: ").append(reference).append("\n");
         }
-        return s + "";
+        return s+"";
     }
 
     public void trier(){
         System.out.println("Les pieces fragiles ne sont pas concernées. ");
-        System.out.println("Trie en cours...");
+        System.out.println("Trie en cours ordre croissant...");
         Map<Integer, Piece> treeMap = new TreeMap<>(toutesPieces);
         toutesPieces = new TreeMap<>(treeMap);
     }
@@ -142,6 +154,7 @@ public class Nomenclature {
     public String getName() {
         return name;
     }
+
     public void sauvegarder_nomenclature(String nom) throws IOException {
         System.out.println("La nomenclature: "+this.getName());
         FileWriter myWriter = new FileWriter(nom);
@@ -155,7 +168,6 @@ public class Nomenclature {
         PieceComposite pieceComposite = null;
         PieceDeBase pieceDeBase;
         long start = System.currentTimeMillis();
-        //   String file ="/home/oes/Documents/Java_OCP11/src/MiniProjet/files/test2.nom";
         Path path = Paths.get("src/MiniProjet/files/"+nom);
         BufferedReader reader = Files.newBufferedReader(path);
         String line;
@@ -165,7 +177,6 @@ public class Nomenclature {
         float poidComposite = 0;
         int refBase;
         int occurenceBase;
-
         int Lines=0;
         boolean flagLine=false;
         while((line = reader.readLine())!=null){
@@ -176,14 +187,12 @@ public class Nomenclature {
             if(Lines==1){
                 nomNomenclature =t[0];
                  nomenclature = new Nomenclature(nomNomenclature);
-                // System.out.println(nomNomenclature);
             }else if(t.length == 3){
                 refComposite =Integer.parseInt(t[0]);
                 nomComposite = t[1];
                 poidComposite =Float.parseFloat(t[2]);
                 pieceComposite = new PieceComposite(nomComposite,poidComposite,refComposite);
                 nomenclature.ajouter(refComposite,pieceComposite);
-                //   System.out.println("Nom: "+nomComposite+"  ref: "+refComposite+" poids: "+poidComposite);
             }else if(t.length == 2){
                 refBase =Integer.parseInt(t[0]);
                 occurenceBase =Integer.parseInt(t[1]);
@@ -194,7 +203,6 @@ public class Nomenclature {
                 pieceDeBase = new PieceDeBase(refBase,occurenceBase);
                 assert pieceComposite != null;
                 pieceComposite.ajouter_piece(pieceDeBase,refBase);
-                // System.out.println("        ref: "+refBase+",  occurence: "+occurenceBase);
             }
         }
         return nomenclature;

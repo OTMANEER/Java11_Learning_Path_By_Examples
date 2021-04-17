@@ -1,6 +1,6 @@
 package MiniProjet;
 
-public class PieceDeBase extends Piece{
+public class PieceDeBase extends Piece implements Comparable<Piece>{
     int occurence;
     public PieceDeBase(int reference, int occurence) {
         this.reference = reference;
@@ -16,5 +16,10 @@ public class PieceDeBase extends Piece{
     @Override
     public String toString() {
         return " reference: " + reference +", occurences: "+occurence;
+    }
+
+    @Override
+    public int compareTo(Piece pieceIntegerPaire) {
+        return this.reference - pieceIntegerPaire.getReference();
     }
 }
