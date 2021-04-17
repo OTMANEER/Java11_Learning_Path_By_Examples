@@ -24,9 +24,9 @@ public class PieceComposite extends Piece {
     }
 
     public void affiche_tous_sous_pieces(int decal) throws Exception {
-        String s="";
+        StringBuilder s= new StringBuilder();
         for(int i=0;i<decal;i++)
-            s+=" ";
+            s.append(" ");
         for(Paire piece:listePieceComposite){
             if(!this.estComposante(piece.getPiece())){
                 throw new Exception();
