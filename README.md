@@ -4,3 +4,6 @@
 2. You will find a lot of examples about different interesting axes of Java programming language.
 3. You have a smal project (Less than 700 lines of code inside)
 4. This repository can be updated in the future.
+5. Make sure that I am using Intellij Idea in all my Java Projects.
+
+~Enjoy
