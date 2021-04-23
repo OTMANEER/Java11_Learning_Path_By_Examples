@@ -44,7 +44,7 @@ public class main {
         // Baghi tzid order? khud collection sorted by default walakin dir implementation l comparator dialha
 
 
-        // ClassCastException!! hit ma3arfch howa kif aydir lhad sort li baghi nta
+        // ClassCastException!!
         // Easy way ------->
 
 
